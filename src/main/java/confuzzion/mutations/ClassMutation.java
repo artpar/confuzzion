@@ -1,5 +1,6 @@
-package confuzzion;
+package confuzzion.mutations;
 
+import confuzzion.RandomGenerator;
 import soot.SootClass;
 
 public abstract class ClassMutation extends Mutation {

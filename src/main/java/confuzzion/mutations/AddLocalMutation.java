@@ -1,5 +1,6 @@
-package confuzzion;
+package confuzzion.mutations;
 
+import confuzzion.RandomGenerator;
 import soot.Local;
 import soot.PrimType;
 import soot.SootMethod;

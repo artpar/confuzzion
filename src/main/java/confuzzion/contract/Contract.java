@@ -1,5 +1,6 @@
-package confuzzion;
+package confuzzion.contract;
 
+import confuzzion.mutations.BodyMutation;
 import soot.Body;
 
 /**

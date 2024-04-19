@@ -9,6 +9,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import soot.SootClass;
 
 public class Util {
     public static final int ERRORCODE_VIOLATION = 200;
+    public static final String JAVA_AGENT_PARAM = "-javaagent:/Users/artpar/workspace/code/insidious/unlogged-java-agent/target/unlogged-java-agent-0.0.1.jar=i=^[^\\.\\/]+$,expire=3,host=n";
 
     private static HashMap<String, String> childMap;
     private static final Logger logger = LoggerFactory.getLogger(Util.class);
@@ -26,7 +28,7 @@ public class Util {
     static {
         childMap = new HashMap<String, String>();
         childMap.put("java.util.concurrent.BlockingQueue",
-                     "java.util.concurrent.ArrayBlockingQueue");
+                "java.util.concurrent.ArrayBlockingQueue");
     }
 
     public static String abstractToConcrete(String className) {
@@ -37,7 +39,7 @@ public class Util {
         Throwable cause = null;
         Throwable result = e;
 
-        while((cause = result.getCause()) != null && (result != cause)) {
+        while ((cause = result.getCause()) != null && (result != cause)) {
             result = cause;
         }
         return result;
@@ -48,14 +50,14 @@ public class Util {
     }
 
     public static void deleteDirectory(Path path) throws IOException {
-        if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
-            try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
-                for (Path entry : entries) {
-                    deleteDirectory(entry);
-                }
-            }
-        }
-        Files.delete(path);
+//        if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
+//            try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
+//                for (Path entry : entries) {
+//                    deleteDirectory(entry);
+//                }
+//            }
+//        }
+//        Files.delete(path);
     }
 
     public static void writeToFile(String fileName, String content) throws IOException {
@@ -67,9 +69,18 @@ public class Util {
 
     public static void startJVM(String javahome, String classpath, String className, long timeoutMiliseconds) throws Exception {
         String path = Paths.get(javahome, "bin", "java").toString();
-        ProcessBuilder processBuilder = new ProcessBuilder(path, "-cp", classpath + ":" + Util.getJarPath(), className);
+        String[] strings = {path, JAVA_AGENT_PARAM, "-cp", classpath + ":" + Util.getJarPath(), className};
+
+        StringJoiner stringJoiner = new StringJoiner(" ");
+        for (String string : strings) {
+            stringJoiner.add(string);
+        }
+        String command = stringJoiner.toString();
+
+
+        ProcessBuilder processBuilder = new ProcessBuilder(strings);
         if (logger.isInfoEnabled()) {
-            logger.info("Command: {}", processBuilder.command());
+            logger.info("Command: {}", command);
         }
         processBuilder.redirectOutput(new File(Paths.get(classpath, "stdout.txt").toString()));
         processBuilder.redirectError(new File(Paths.get(classpath, "stderr.txt").toString()));
@@ -94,7 +105,7 @@ public class Util {
             String path =
                     new File(Util.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getPath();
             return path;
-        } catch(java.net.URISyntaxException e) {
+        } catch (java.net.URISyntaxException e) {
             logger.error("Error while getting JAR path", e);
             return null;
         }

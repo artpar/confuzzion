@@ -1,5 +1,8 @@
-package confuzzion;
+package confuzzion.mutations;
 
+import confuzzion.Mutant;
+import confuzzion.MutationException;
+import confuzzion.RandomGenerator;
 import soot.Body;
 import soot.Local;
 import soot.RefType;
@@ -17,7 +20,7 @@ public class CallMethodMutation extends MethodMutation {
     private InitializeMutation initializeMutation;
 
     public CallMethodMutation(RandomGenerator rand, SootMethod method,
-            HashSet<SootMethod> methodsSet, ArrayList<Mutant> mutants) throws MutationException {
+                              HashSet<SootMethod> methodsSet, ArrayList<Mutant> mutants) throws MutationException {
         super(rand, method);
         this.methodsSet = methodsSet;
         addsNewMethodCall = false;

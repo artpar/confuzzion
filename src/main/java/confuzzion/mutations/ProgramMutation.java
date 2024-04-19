@@ -1,4 +1,7 @@
-package confuzzion;
+package confuzzion.mutations;
+
+import confuzzion.Program;
+import confuzzion.RandomGenerator;
 
 /**
  * Class ProgramMutation describes a mutation on a Program

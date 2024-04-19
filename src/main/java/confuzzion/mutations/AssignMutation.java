@@ -1,5 +1,8 @@
-package confuzzion;
+package confuzzion.mutations;
 
+import confuzzion.ConfuzzionOptions;
+import confuzzion.MutationException;
+import confuzzion.RandomGenerator;
 import soot.Body;
 import soot.Local;
 import soot.Scene;

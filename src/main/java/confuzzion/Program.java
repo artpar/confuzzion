@@ -1,5 +1,7 @@
 package confuzzion;
 
+import confuzzion.contract.Contract;
+import confuzzion.mutations.*;
 import soot.Body;
 import soot.SootClass;
 import soot.SootMethod;

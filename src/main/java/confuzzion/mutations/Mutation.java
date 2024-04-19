@@ -1,4 +1,6 @@
-package confuzzion;
+package confuzzion.mutations;
+
+import confuzzion.RandomGenerator;
 
 /**
  * Class Mutation describes a change

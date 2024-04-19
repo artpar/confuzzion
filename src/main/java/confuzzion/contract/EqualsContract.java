@@ -1,5 +1,7 @@
-package confuzzion;
+package confuzzion.contract;
 
+import confuzzion.contract.Contract;
+import confuzzion.mutations.BodyMutation;
 import soot.Body;
 import soot.Local;
 import soot.RefType;

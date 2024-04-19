@@ -1,5 +1,7 @@
 package confuzzion;
 
+import confuzzion.mutations.BodyMutation;
+
 public class MutationException extends Exception {
     /**
      * Generated serialVersionUID

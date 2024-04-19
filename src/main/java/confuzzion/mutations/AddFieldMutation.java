@@ -1,5 +1,7 @@
-package confuzzion;
+package confuzzion.mutations;
 
+import confuzzion.MutationException;
+import confuzzion.RandomGenerator;
 import soot.SootClass;
 import soot.SootField;
 import soot.SootMethod;

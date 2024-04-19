@@ -1,5 +1,7 @@
 package confuzzion;
 
+import static soot.options.Options.java_version_11;
+
 public class ConfuzzionOptions {
     private static final ConfuzzionOptions instance = new ConfuzzionOptions();
 
@@ -14,9 +16,9 @@ public class ConfuzzionOptions {
     private ConfuzzionOptions() {
         allow_unsafe_assignment = false;
         use_jasmin_backend = false;
-        java_version = soot.options.Options.java_version_default;
+        java_version = java_version_11;
         class_number_limit = 3;
-        fixed_number_of_classes = true;
+        fixed_number_of_classes = false;
         use_uniform_distribution_for_methods = false;
         quiet = false;
     }

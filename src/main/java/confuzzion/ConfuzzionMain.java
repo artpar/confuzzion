@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Timer;
 
+import confuzzion.contract.Contract;
+import confuzzion.contract.ContractTypeConfusion;
+import confuzzion.mutations.BodyMutation;
+import confuzzion.mutations.CallMethodMutation;
+import confuzzion.mutations.Mutation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +33,7 @@ public class ConfuzzionMain {
 
     private static final long MAIN_LOOP_ITERATIONS = -1; // no limit
     private static final int CONSTANTS_TRIES = 1;
-    private static final long TIMEOUT = 1000L;
+    private static final long TIMEOUT = 10000L;
     private static final int STACK_LIMIT = Integer.MAX_VALUE;
     private static final boolean WITH_JVM = true;
     private static final long TIMER_TIMEOUT = 1000;

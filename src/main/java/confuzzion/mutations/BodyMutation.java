@@ -1,4 +1,4 @@
-package confuzzion;
+package confuzzion.mutations;
 
 import soot.Body;
 import soot.Local;

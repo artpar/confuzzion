@@ -1,5 +1,8 @@
-package confuzzion;
+package confuzzion.mutations;
 
+import confuzzion.Mutant;
+import confuzzion.Program;
+import confuzzion.RandomGenerator;
 import soot.Scene;
 
 public class AddClassMutation extends ProgramMutation {
